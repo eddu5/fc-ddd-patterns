@@ -70,3 +70,5 @@ export default class Customer {
     this._address = address;
   }
 }
+
+let customer = new Customer('33','');

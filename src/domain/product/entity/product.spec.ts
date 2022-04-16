@@ -30,4 +30,5 @@ describe("Product unit tests", () => {
     product.changePrice(150);
     expect(product.price).toBe(150);
   });
+
 });
