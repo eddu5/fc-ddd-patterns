@@ -38,9 +38,11 @@ export default class Product implements ProductInterface {
     if (this._id.length === 0) {
       throw new Error("Id is required");
     }
-    if (this._name.length === 0) {
+
+    if (this._name.length === 0) {     
       throw new Error("Name is required");
     }
+    
     if (this._price < 0) {
       throw new Error("Price must be greater than zero");
     }
