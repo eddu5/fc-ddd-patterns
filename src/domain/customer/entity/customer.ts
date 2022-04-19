@@ -71,4 +71,3 @@ export default class Customer {
   }
 }
 
-let customer = new Customer('33','');

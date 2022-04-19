@@ -142,6 +142,7 @@ describe("Order repository test", () => {
     });
   });
 
+  //Correção para buscar um apenas
   it("should find an order", async () => {
     const customerRepository = new CustomerRepository();
     const customer = new Customer("123", "Customer 1");
@@ -166,29 +167,13 @@ describe("Order repository test", () => {
     const orderRepository = new OrderRepository();
     await orderRepository.create(order);
 
-    const orderModel = await OrderModel.findOne({
-      where: { id: order.id },
-      include: ["items"],
-    });
+    const orderModel = await orderRepository.find(order.id);   
 
-    expect(orderModel.toJSON()).toStrictEqual({
-      id: "123",
-      customer_id: "123",
-      total: order.total(),
-      items: [
-        {
-          id: ordemItem.id,
-          name: ordemItem.name,
-          price: ordemItem.price,
-          quantity: ordemItem.quantity,
-          order_id: "123",
-          product_id: "123",
-        },
-      ],
-    });
+    expect(orderModel).toMatchObject(order);
+
   });
 
-  it("should throw an error when order is not found", async () => {
+   it("should throw an error when order is not found", async () => {
     const orderRepository = new OrderRepository();
 
     expect(async () => {
